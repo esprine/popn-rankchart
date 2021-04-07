@@ -1,0 +1,10 @@
+{
+  "name": "popn-rank",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite"
+  },
+  "devDependencies": {
+    "vite": "^2.1.5"
+  }
+}
