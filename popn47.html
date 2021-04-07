@@ -13,13 +13,13 @@ $(document).ready(function(){
 	var root = document.querySelector('#downloadImage');
 	var bounds = [
 		{ label: '47 최상', group: 'group-1', groupBtn: { size: [79,76], pos: [39,456] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [438, 505] },
-		{ label: '47 상', group: 'group-2', groupBtn: { size: [96,88], pos: [50,708] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [598, 665, 733, 800] },
-		{ label: '47 중상', group: 'group-3', groupBtn: { size: [96,88], pos: [50,1043] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [894, 961, 1029, 1096, 1161, 1225] },
-		{ label: '47 중', group: 'group-4', groupBtn: { size: [96,88], pos: [50,1378] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1317, 1384, 1452, 1520, 1586] },
-		{ label: '47 중하', group: 'group-5', groupBtn: { size: [96,88], pos: [50,1673] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1681, 1748, 1815] },
-		{ label: '47 하', group: 'group-6', groupBtn: { size: [96,88], pos: [50,1927] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1908, 1975, 2043] },
-		{ label: '47 최하', group: 'group-7', groupBtn: { size: [96,88], pos: [50,2113] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [2136] },
-		{ label: '47 개인차', group: 'group-8', groupBtn: { size: [96,88], pos: [50,2113] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [2234, 2301] },
+		{ label: '47 상', group: 'group-2', groupBtn: { size: [79,76], pos: [39,690] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [598, 665, 733, 800] },
+		{ label: '47 중상', group: 'group-3', groupBtn: { size: [79,76], pos: [39,1049] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [894, 961, 1029, 1096, 1161, 1225] },
+		{ label: '47 중', group: 'group-4', groupBtn: { size: [79,76], pos: [39,1443] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1317, 1384, 1452, 1520, 1586] },
+		{ label: '47 중하', group: 'group-5', groupBtn: { size: [79,76], pos: [39,1738] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1681, 1748, 1815] },
+		{ label: '47 하', group: 'group-6', groupBtn: { size: [79,76], pos: [39,1965] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1908, 1975, 2043] },
+		{ label: '47 최하', group: 'group-7', groupBtn: { size: [79,76], pos: [39,2129] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [2136] },
+		{ label: '47 개인차', group: 'group-8', groupBtn: { size: [79,76], pos: [39,2255] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [2234, 2301] },
 		]
 	var excludes = [
 		[471, 505], [638, 505], [805, 505], [972, 505], [1139, 505], [1306, 505],
@@ -37,6 +37,7 @@ $(document).ready(function(){
 		if (area.groupBtn) {
 			var d = document.createElement('div');
 			d.classList.add('medalArea');
+			d.classList.add('lv47');
 			d.classList.add('groupBtn');
 			d.style.left = area.groupBtn.pos[0] + 'px';
 			d.style.top = area.groupBtn.pos[1] + 'px';
