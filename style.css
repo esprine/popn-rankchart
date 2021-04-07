@@ -66,6 +66,13 @@ h1 {
   margin-top: 15px;
 }
 
+.medalArea.lv47 {
+	border:1px solid transparent;
+	position:absolute;
+	width:33px; 
+	height:34px;
+}
+
 .medalArea.lv48 {
   border:1px solid transparent;
 	position:absolute;
@@ -73,11 +80,11 @@ h1 {
 	height:40px;
 }
 
-.medalArea.lv47 {
+.medalArea.lv49 {
 	border:1px solid transparent;
 	position:absolute;
-	width:33px; 
-	height:34px;
+	width:42px; 
+	height:42px;
 }
 
 .medal {
