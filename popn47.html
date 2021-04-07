@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pop'n Music Lv.47 서열표</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var target;
+	var root = document.querySelector('#downloadImage');
+	var bounds = [
+		{ label: '47 최상', group: 'group-1', groupBtn: { size: [79,76], pos: [39,456] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [438, 505] },
+		{ label: '47 상', group: 'group-2', groupBtn: { size: [96,88], pos: [50,708] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [598, 665, 733, 800] },
+		{ label: '47 중상', group: 'group-3', groupBtn: { size: [96,88], pos: [50,1043] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [894, 961, 1029, 1096, 1161, 1225] },
+		{ label: '47 중', group: 'group-4', groupBtn: { size: [96,88], pos: [50,1378] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1317, 1384, 1452, 1520, 1586] },
+		{ label: '47 중하', group: 'group-5', groupBtn: { size: [96,88], pos: [50,1673] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1681, 1748, 1815] },
+		{ label: '47 하', group: 'group-6', groupBtn: { size: [96,88], pos: [50,1927] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [1908, 1975, 2043] },
+		{ label: '47 최하', group: 'group-7', groupBtn: { size: [96,88], pos: [50,2113] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [2136] },
+		{ label: '47 개인차', group: 'group-8', groupBtn: { size: [96,88], pos: [50,2113] }, x: [137, 304, 471, 638, 805, 972, 1139, 1306], y: [2234, 2301] },
+		]
+	var excludes = [
+		[471, 505], [638, 505], [805, 505], [972, 505], [1139, 505], [1306, 505],
+		[304, 800], [471, 800], [638, 800], [805, 800], [972, 800], [1139, 800], [1306, 800],
+		[471, 1225], [638, 1225], [805, 1225], [972, 1225], [1139, 1225], [1306, 1225],
+		[471, 1586], [638, 1586], [805, 1586], [972, 1586], [1139, 1586], [1306, 1586],
+		[638, 2043], [805, 2043], [972, 2043], [1139, 2043], [1306, 2043],
+		[304, 2136], [471, 2136], [638, 2136], [805, 2136], [972, 2136], [1139, 2136], [1306, 2136],
+		[972, 2301], [1139, 2301], [1306, 2301]
+	];
+	
+	for (var a in bounds) {
+		var area = bounds[a];
+		
+		if (area.groupBtn) {
+			var d = document.createElement('div');
+			d.classList.add('medalArea');
+			d.classList.add('groupBtn');
+			d.style.left = area.groupBtn.pos[0] + 'px';
+			d.style.top = area.groupBtn.pos[1] + 'px';
+			d.style.width = area.groupBtn.size[0] + 'px';
+			d.style.height = area.groupBtn.size[1] + 'px';
+			d.setAttribute('data-group', area.group);
+			root.appendChild(d);
+		}
+		
+	    for (var b in area.y) {
+	    	var y = area.y[b];
+	        for (var c in area.x) {
+	        	var x = area.x[c];
+
+	        	var is_pass = false;
+	        	for (var d in excludes) {
+	        		var exclude = excludes[d];
+	        		if (exclude[0] === x && exclude[1] === y) {
+	        			is_pass = true;	
+	        		}
+	        	}
+	        	
+	        	if (is_pass) continue;
+	        	
+	            var d = document.createElement('div');
+	            d.classList.add('medalArea');
+				d.classList.add('lv47')
+	            if (area.group) d.classList.add(area.group);
+	            d.style.left = x + 'px';
+	            d.style.top = y + 'px';
+	            
+	            var e = document.createElement('img');
+	            e.src = 'img/medal/none.gif';
+	            e.setAttribute('data-status-badge', 'none');
+	            e.style.width = '32px';
+	            e.style.height = '32px';
+	            d.appendChild(e);
+	            
+	            root.appendChild(d);
+	        }
+	    }
+	}
+	
+
+	$(document).click(function(e){
+		$(".contextmenu").hide();
+	});
+	
+	$(".medalArea").click(function(e){
+		$(".contextmenu").css({
+			"left": e.pageX,
+			"top" : e.pageY
+		}).show();
+		target = e.target;
+		
+		return false;
+	});
+	
+	function changeMedalBadge(target, id, badge) {
+		var element;
+		
+		if (target.tagName === 'IMG') {
+			element = target;
+		} else if (target.tagName === 'DIV') {
+			element = target.querySelector('img');
+		}
+		element.setAttribute('src', 'img/medal/' + badge);
+		element.setAttribute('data-status-badge', id);
+		
+		updateCount();
+	}
+	
+	function getBadgeCount(id) {
+		switch (id) {
+			case 'goldstar':
+			case 'silverstar':
+			case 'silverspade':
+			case 'silvermedal':
+			case 'star':
+			case 'spade':
+			case 'medal':
+			case 'blackstar':
+			case 'blackspade':
+			case 'blackmedal':
+			case 'none':
+				return [].slice.call(document.querySelectorAll('[data-status-badge="' + id + '"]')).length;
+		}
+	}
+	
+	function updateCount() {
+		['goldstar', 'silverstar', 'silverspade'].forEach(function(x) { console.log(getBadgeCount(x)) });
+	}
+	
+	
+	function contextMenuClicked(e) {
+		var id = e.target.id;
+		var badge = e.target.getAttribute('data-badge');
+		switch (id) {
+			case 'goldstar':
+			case 'silverstar':
+			case 'silverspade':
+			case 'silvermedal':
+			case 'star':
+			case 'spade':
+			case 'medal':
+			case 'blackstar':
+			case 'blackspade':
+			case 'blackmedal':
+			case 'none':
+				if (target.classList.contains('groupBtn')) {
+					var groupClass = target.getAttribute('data-group');
+					[].slice.call(document.querySelectorAll('.' + groupClass)).forEach(function(target) {
+						changeMedalBadge(target, id, badge);
+					})
+					break;
+				}
+				changeMedalBadge(target, id, badge);
+			break;
+		}
+	}
+	
+	$(".contextmenu > li").click(contextMenuClicked);
+	
+	$("#save").click(function() {
+		const captureDiv = document.getElementById('downloadImage');
+		const captureImg = document.getElementById('target');
+		html2canvas($("#downloadImage"), {allowTaint: true, useCORS: true, width:captureImg.offsetWidth, height: captureDiv.offsetHeight, scale: 1}).then(function(canvas){
+			var myImage = canvas.toDataURL();
+			var link = document.createElement("a")
+			link.download = "downloadImage.png";
+			link.href = myImage;
+			document.body.appendChild(link);
+			link.click();
+		});
+    });
+	
+	$("#clear").click(function(){
+		$(".medalArea").empty();
+	});
+});
+</script>
+</head>
+<body>
+<div style="margin:10px 0px 10px 20px;">
+	<button id="clear" style="width:100px; height:30px;">초기화</button>
+	<button id="save" style="width:100px; height:30px;">저장</button>
+	
+</div>
+<div id="downloadImage">
+	<!-- 원본 -->
+	<img id="target" class="target" src="img/47.png"/>
+</div>
+<ul class="contextmenu">
+	<li id="goldstar" data-badge="goldstar.png">금별</li>
+	<li id="silverstar" data-badge="silverstar.png">은별</li>
+	<li id="silverspade" data-badge="silverspade.png">은다이아</li>
+	<li id="silvermedal" data-badge="silvermedal.png">은메달</li>
+	<li id="star" data-badge="star.png">동별</li>
+	<li id="spade" data-badge="spade.png">동다이아</li>
+	<li id="medal" data-badge="medal.png">동메달</li>
+	<li id="blackstar" data-badge="blackstar.png">흑별</li>
+	<li id="blackspade" data-badge="blackspade.png">흑다이아</li>
+	<li id="blackmedal" data-badge="blackmedal.png">흑메달</li>
+	<li id="none" data-badge="none.gif">없음</li>
+</ul>
+</body>
+</html>
