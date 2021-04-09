@@ -32,7 +32,7 @@ h1 {
 .contextmenu {
   display: none;
   position: absolute;
-  width: 200px;
+  width: 175px;
   margin: 0;
   padding: 0;
   background: #FFFFFF;
@@ -57,6 +57,17 @@ h1 {
 .contextmenu li:hover {
   background: #CE93D8;
   border-left: 3px solid #9C27B0;
+}
+
+.horizontal {
+  list-style: none;
+  padding-left:0px;
+  height: 50px;
+}
+
+.horizontal li {
+  display: inline;
+  padding: 10px;
 }
 
 .overlay {

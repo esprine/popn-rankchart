@@ -154,7 +154,8 @@ $(document).ready(function(){
 	}
 	
 	$(".contextmenu > li").click(contextMenuClicked);
-	
+	$(".contextmenu > .horizontal > li").click(contextMenuClicked);
+
 	$("#save").click(function() {
 		const captureDiv = document.getElementById('downloadImage');
 		const captureImg = document.getElementById('target');
@@ -185,16 +186,22 @@ $(document).ready(function(){
 	<img id="target" class="target" src="img/49.png"/>
 </div>
 <ul class="contextmenu">
-	<li id="goldstar" data-badge="goldstar.png">금별</li>
-	<li id="silverstar" data-badge="silverstar.png">은별</li>
-	<li id="silverspade" data-badge="silverspade.png">은다이아</li>
-	<li id="silvermedal" data-badge="silvermedal.png">은메달</li>
-	<li id="star" data-badge="star.png">동별</li>
-	<li id="spade" data-badge="spade.png">동다이아</li>
-	<li id="medal" data-badge="medal.png">동메달</li>
-	<li id="blackstar" data-badge="blackstar.png">흑별</li>
-	<li id="blackspade" data-badge="blackspade.png">흑다이아</li>
-	<li id="blackmedal" data-badge="blackmedal.png">흑메달</li>
+	<li id="goldstar" data-badge="goldstar.png"><img id="goldstar" data-badge="goldstar.png" src="img/medal/goldstar.png" style="width:30px; height:30px;"/></li>
+	<ul class="horizontal">
+		<li id="silverstar" data-badge="silverstar.png"><img id="silverstar" data-badge="silverstar.png" src="img/medal/silverstar.png" style="width:30px; height:30px;"/></li>
+		<li id="silverspade" data-badge="silverspade.png"><img id="silverspade" data-badge="silverspade.png" src="img/medal/silverspade.png" style="width:30px; height:30px;"/></li>
+		<li id="silvermedal" data-badge="silvermedal.png"><img id="silvermedal" data-badge="silvermedal.png" src="img/medal/silvermedal.png" style="width:30px; height:30px;"/></li>
+	</ul>
+	<ul class="horizontal">
+		<li id="star" data-badge="star.png"><img id="star" data-badge="star.png" src="img/medal/star.png" style="width:30px; height:30px;"/></li>
+		<li id="spade" data-badge="spade.png"><img id="spade" data-badge="spade.png" src="img/medal/spade.png" style="width:30px; height:30px;"/></li>
+		<li id="medal" data-badge="medal.png"><img id="medal" data-badge="medal.png" src="img/medal/medal.png" style="width:30px; height:30px;"/></li>
+	</ul>
+	<ul class="horizontal">
+		<li id="blackstar" data-badge="blackstar.png"><img id="blackstar" data-badge="blackstar.png" src="img/medal/blackstar.png" style="width:30px; height:30px;"/></li>
+		<li id="blackspade" data-badge="blackspade.png"><img id="blackspade" data-badge="blackspade.png" src="img/medal/blackspade.png" style="width:30px; height:30px;"></li>
+		<li id="blackmedal" data-badge="blackmedal.png"><img id="blackmedal" data-badge="blackmedal.png" src="img/medal/blackmedal.png" style="width:30px; height:30px;"></li>
+	</ul>
 	<li id="none" data-badge="none.gif">없음</li>
 </ul>
 </body>
