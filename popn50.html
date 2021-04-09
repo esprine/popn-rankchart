@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Pop'n Music Lv.50 서열표</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.2/FileSaver.min.js"></script>  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.5.0-beta4/html2canvas.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var target;
+	var root = document.querySelector('#downloadImage');
+	var bounds = [
+		{ label: '50 최상', group: 'group-1', groupBtn: { size: [123,115], pos: [59,455] }, x: [259, 675, 1091], y: [516] },
+		{ label: '50 상', group: 'group-2', groupBtn: { size: [123,115], pos: [59,796] }, x: [259, 675, 1091], y: [740, 942] },
+		{ label: '50 중상', group: 'group-3', groupBtn: { size: [123,115], pos: [59,1121] }, x: [259, 675, 1091], y: [1167] },
+		{ label: '50 중', group: 'group-4', groupBtn: { size: [123,115], pos: [59,1345] }, x: [259, 675, 1091], y: [1390] },
+		{ label: '50 하', group: 'group-5', groupBtn: { size: [123,115], pos: [59,1570] }, x: [259, 675, 1091], y: [1614] },
+		{ label: '50 최하', group: 'group-6', groupBtn: { size: [123,115], pos: [59,1795] }, x: [259, 675, 1091], y: [1839] },
+		]
+	var excludes = [
+		[1091, 942], [1091, 1614], [1091, 1839]
+	];
+	
+	for (var a in bounds) {
+		var area = bounds[a];
+		
+		if (area.groupBtn) {
+			var d = document.createElement('div');
+			d.classList.add('medalArea');
+			d.classList.add('lv50');
+			d.classList.add('groupBtn');
+			d.style.left = area.groupBtn.pos[0] + 'px';
+			d.style.top = area.groupBtn.pos[1] + 'px';
+			d.style.width = area.groupBtn.size[0] + 'px';
+			d.style.height = area.groupBtn.size[1] + 'px';
+			d.setAttribute('data-group', area.group);
+			root.appendChild(d);
+		}
+		
+	    for (var b in area.y) {
+	    	var y = area.y[b];
+	        for (var c in area.x) {
+	        	var x = area.x[c];
+
+	        	var is_pass = false;
+	        	for (var d in excludes) {
+	        		var exclude = excludes[d];
+	        		if (exclude[0] === x && exclude[1] === y) {
+	        			is_pass = true;	
+	        		}
+	        	}
+	        	
+	        	if (is_pass) continue;
+	        	
+	            var d = document.createElement('div');
+	            d.classList.add('medalArea');
+				d.classList.add('lv50')
+	            if (area.group) d.classList.add(area.group);
+	            d.style.left = x + 'px';
+	            d.style.top = y + 'px';
+	            
+	            var e = document.createElement('img');
+	            e.src = 'img/medal/none.gif';
+	            e.setAttribute('data-status-badge', 'none');
+	            e.style.width = '56px';
+	            e.style.height = '56px';
+	            d.appendChild(e);
+	            
+	            root.appendChild(d);
+	        }
+	    }
+	}
+	
+
+	$(document).click(function(e){
+		$(".contextmenu").hide();
+	});
+	
+	$(".medalArea").click(function(e){
+		$(".contextmenu").css({
+			"left": e.pageX,
+			"top" : e.pageY
+		}).show();
+		target = e.target;
+		
+		return false;
+	});
+	
+	function changeMedalBadge(target, id, badge) {
+		var element;
+		
+		if (target.tagName === 'IMG') {
+			element = target;
+		} else if (target.tagName === 'DIV') {
+			element = target.querySelector('img');
+		}
+		element.setAttribute('src', 'img/medal/' + badge);
+		element.setAttribute('data-status-badge', id);
+		
+		updateCount();
+	}
+	
+	function getBadgeCount(id) {
+		switch (id) {
+			case 'goldstar':
+			case 'silverstar':
+			case 'silverspade':
+			case 'silvermedal':
+			case 'star':
+			case 'spade':
+			case 'medal':
+			case 'blackstar':
+			case 'blackspade':
+			case 'blackmedal':
+			case 'none':
+				return [].slice.call(document.querySelectorAll('[data-status-badge="' + id + '"]')).length;
+		}
+	}
+	
+	function updateCount() {
+		['goldstar', 'silverstar', 'silverspade'].forEach(function(x) { console.log(getBadgeCount(x)) });
+	}
+	
+	
+	function contextMenuClicked(e) {
+		var id = e.target.id;
+		var badge = e.target.getAttribute('data-badge');
+		switch (id) {
+			case 'goldstar':
+			case 'silverstar':
+			case 'silverspade':
+			case 'silvermedal':
+			case 'star':
+			case 'spade':
+			case 'medal':
+			case 'blackstar':
+			case 'blackspade':
+			case 'blackmedal':
+			case 'none':
+				if (target.classList.contains('groupBtn')) {
+					var groupClass = target.getAttribute('data-group');
+					[].slice.call(document.querySelectorAll('.' + groupClass)).forEach(function(target) {
+						changeMedalBadge(target, id, badge);
+					})
+					break;
+				}
+				changeMedalBadge(target, id, badge);
+			break;
+		}
+	}
+	
+	$(".contextmenu > li").click(contextMenuClicked);
+	$(".contextmenu > .horizontal > li").click(contextMenuClicked);
+
+	$("#save").click(function() {
+		const captureDiv = document.getElementById('downloadImage');
+		const captureImg = document.getElementById('target');
+		html2canvas($("#downloadImage"), {allowTaint: true, useCORS: true, width:captureImg.offsetWidth, height: captureDiv.offsetHeight, scale: 1}).then(function(canvas){
+			var myImage = canvas.toDataURL();
+			var link = document.createElement("a")
+			link.download = "downloadImage.png";
+			link.href = myImage;
+			document.body.appendChild(link);
+			link.click();
+		});
+    });
+	
+	$("#clear").click(function(){
+		$(".medalArea").empty();
+	});
+});
+</script>
+</head>
+<body>
+<div style="margin:10px 0px 10px 20px;">
+	<button id="clear" style="width:100px; height:30px;">초기화</button>
+	<button id="save" style="width:100px; height:30px;">저장</button>
+	
+</div>
+<div id="downloadImage">
+	<!-- 원본 -->
+	<img id="target" class="target" src="img/50.png"/>
+</div>
+<ul class="contextmenu">
+	<li id="goldstar" data-badge="goldstar.png"><img id="goldstar" data-badge="goldstar.png" src="img/medal/goldstar.png" style="width:30px; height:30px;"/></li>
+	<ul class="horizontal">
+		<li id="silverstar" data-badge="silverstar.png"><img id="silverstar" data-badge="silverstar.png" src="img/medal/silverstar.png" style="width:30px; height:30px;"/></li>
+		<li id="silverspade" data-badge="silverspade.png"><img id="silverspade" data-badge="silverspade.png" src="img/medal/silverspade.png" style="width:30px; height:30px;"/></li>
+		<li id="silvermedal" data-badge="silvermedal.png"><img id="silvermedal" data-badge="silvermedal.png" src="img/medal/silvermedal.png" style="width:30px; height:30px;"/></li>
+	</ul>
+	<ul class="horizontal">
+		<li id="star" data-badge="star.png"><img id="star" data-badge="star.png" src="img/medal/star.png" style="width:30px; height:30px;"/></li>
+		<li id="spade" data-badge="spade.png"><img id="spade" data-badge="spade.png" src="img/medal/spade.png" style="width:30px; height:30px;"/></li>
+		<li id="medal" data-badge="medal.png"><img id="medal" data-badge="medal.png" src="img/medal/medal.png" style="width:30px; height:30px;"/></li>
+	</ul>
+	<ul class="horizontal">
+		<li id="blackstar" data-badge="blackstar.png"><img id="blackstar" data-badge="blackstar.png" src="img/medal/blackstar.png" style="width:30px; height:30px;"/></li>
+		<li id="blackspade" data-badge="blackspade.png"><img id="blackspade" data-badge="blackspade.png" src="img/medal/blackspade.png" style="width:30px; height:30px;"></li>
+		<li id="blackmedal" data-badge="blackmedal.png"><img id="blackmedal" data-badge="blackmedal.png" src="img/medal/blackmedal.png" style="width:30px; height:30px;"></li>
+	</ul>
+	<li id="none" data-badge="none.gif">없음</li>
+</ul>
+</body>
+</html>
