@@ -59,6 +59,10 @@ h1 {
   border-left: 3px solid #9C27B0;
 }
 
+.horizontal {
+  list-style: none;
+}
+
 .horizontal li {
   display: inline;
 }
