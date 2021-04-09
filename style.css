@@ -61,10 +61,12 @@ h1 {
 
 .horizontal {
   list-style: none;
+  padding-left:0px;
 }
 
 .horizontal li {
   display: inline;
+  padding: 10px;
 }
 
 .overlay {
