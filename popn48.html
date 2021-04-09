@@ -124,6 +124,7 @@ $(document).ready(function(){
 	
 	
 	function contextMenuClicked(e) {
+		console.log(e.target.id, e.target.getAttribute('data-badge'));
 		var id = e.target.id;
 		var badge = e.target.getAttribute('data-badge');
 		switch (id) {
@@ -185,6 +186,7 @@ $(document).ready(function(){
 <ul class="contextmenu">
 	<li id="goldstar" data-badge="goldstar.png"><img id="goldstar" data-badge="goldstar.png" src="img/medal/goldstar.png" style="width:30px; height:30px;"/></li>
 	<ul class="horizontal">
+<<<<<<< HEAD:popn48.html
 		<li id="silverstar" data-badge="silverstar.png"><img id="silverstar" data-badge="silverstar.png" src="img/medal/silverstar.png" style="width:30px; height:30px;"/></li>
 		<li id="silverspade" data-badge="silverspade.png"><img id="silverspade" data-badge="silverspade.png" src="img/medal/silverspade.png" style="width:30px; height:30px;"/></li>
 		<li id="silvermedal" data-badge="silvermedal.png"><img id="silvermedal" data-badge="silvermedal.png" src="img/medal/silvermedal.png" style="width:30px; height:30px;"/></li>
@@ -198,6 +200,21 @@ $(document).ready(function(){
 		<li id="blackstar" data-badge="blackstar.png"><img id="blackstar" data-badge="blackstar.png" src="img/medal/blackstar.png" style="width:30px; height:30px;"/></li>
 		<li id="blackspade" data-badge="blackspade.png"><img id="blackspade" data-badge="blackspade.png" src="img/medal/blackspade.png" style="width:30px; height:30px;"></li>
 		<li id="blackmedal" data-badge="blackmedal.png"><img id="blackmedal" data-badge="blackmedal.png" src="img/medal/blackmedal.png" style="width:30px; height:30px;"></li>
+=======
+		<li id="silverstar" data-badge="silverstar.png"><img id="silverstar" data-badge="silverstar.png" src="img/medal/silverstar.png" style="width:30px; height:30px;"/</li>
+		<li id="silverspade" data-badge="silverspade.png"><img id="silverspade" data-badge="silverspade.png" src="img/medal/silverspade.png" style="width:30px; height:30px;"/</li>
+		<li id="silvermedal" data-badge="silvermedal.png"><img id="silvermedal" data-badge="silvermedal.png" src="img/medal/silvermedal.png" style="width:30px; height:30px;"/</li>
+	</ul>
+	<ul class="horizontal">
+		<li id="star" data-badge="star.png"><img id="star" data-badge="star.png" src="img/medal/star.png" style="width:30px; height:30px;"/</li>
+		<li id="spade" data-badge="spade.png"><img id="spade" data-badge="spade.png" src="img/medal/spade.png" style="width:30px; height:30px;"/</li>
+		<li id="medal" data-badge="medal.png"><img id="medal" data-badge="medal.png" src="img/medal/medal.png" style="width:30px; height:30px;"/</li>
+	</ul>
+	<ul class="horizontal">
+		<li id="blackstar" data-badge="blackstar.png"><img id="blackstar" data-badge="blackstar.png" src="img/medal/blackstar.png" style="width:30px; height:30px;"/</li>
+		<li id="blackspade" data-badge="blackspade.png"><img id="blackspade" data-badge="blackspade.png" src="img/medal/blackspade.png" style="width:30px; height:30px;"/</li>
+		<li id="blackmedal" data-badge="blackmedal.png"><img id="blackmedal" data-badge="blackmedal.png" src="img/medal/blackmedal.png" style="width:30px; height:30px;"/</li>
+>>>>>>> 5d2f0143320b6a96323b4fb291625595d0d9b659:index.html
 	</ul>
 	<li id="none" data-badge="none.gif">없음</li>
 </ul>

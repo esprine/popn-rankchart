@@ -49,7 +49,7 @@ h1 {
   border-left: 3px solid transparent;
   display: block;
   padding: 10px;
-  color: #B0BEC5;
+  color: #000000;
   text-decoration: none;
   transition: ease .2s;
 }
@@ -78,6 +78,7 @@ h1 {
 }
 
 .medalArea {
+<<<<<<< HEAD
   cursor: Pointer;
 }
 
@@ -86,6 +87,9 @@ h1 {
 	position:absolute;
 	width:33px; 
 	height:34px;
+=======
+	cursor: pointer;
+>>>>>>> 5d2f0143320b6a96323b4fb291625595d0d9b659
 }
 
 .medalArea.lv47 {
