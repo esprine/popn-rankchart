@@ -66,6 +66,10 @@ h1 {
   margin-top: 15px;
 }
 
+.medalArea {
+	cursor: pointer;
+}
+
 .medalArea.lv47 {
 	border:1px solid transparent;
 	position:absolute;
