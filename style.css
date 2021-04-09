@@ -59,6 +59,10 @@ h1 {
   border-left: 3px solid #9C27B0;
 }
 
+.horizontal li {
+  display: inline;
+}
+
 .overlay {
   padding-left:5px;
   position: absolute;
