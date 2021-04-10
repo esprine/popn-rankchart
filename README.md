@@ -4,10 +4,10 @@
 
 * 만든 이 : [@esprine](https://twitter.com/@esprine__)
 
-* 47레벨 서열표 : https://esprine.github.io/popn-rankchart/popn47.html
-* 48레벨 서열표 : https://esprine.github.io/popn-rankchart/popn48.html
-* 49레벨 서열표 : https://esprine.github.io/popn-rankchart/popn49.html
-* 50레벨 서열표 : https://esprine.github.io/popn-rankchart/popn50.html
+* 47레벨 서열표 : [바로가기](https://esprine.github.io/popn-rankchart/popn47.html)
+* 48레벨 서열표 : [바로가기](https://esprine.github.io/popn-rankchart/popn48.html)
+* 49레벨 서열표 : [바로가기](https://esprine.github.io/popn-rankchart/popn49.html)
+* 50레벨 서열표 : [바로가기](https://esprine.github.io/popn-rankchart/popn50.html)
 
 ## 빌드
 ### install
