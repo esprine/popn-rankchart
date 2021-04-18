@@ -113,3 +113,10 @@ h1 {
   display: none;
   position: absolute;
 }
+
+.medalTable {
+  display: none;
+  position: absolute;
+  background: #FFFFFF;
+  border-radius: 5px;
+}

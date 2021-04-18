@@ -84,6 +84,7 @@ $(document).ready(function(){
 
 	$(document).click(function(e){
 		$(".contextmenu").hide();
+		$(".medalTable").hide();
 	});
 	
 	$(".medalArea").click(function(e){
@@ -128,7 +129,10 @@ $(document).ready(function(){
 	}
 	
 	function updateCount() {
-		['goldstar', 'silverstar', 'silverspade'].forEach(function(x) { console.log(getBadgeCount(x)) });
+		['goldstar', 'silverstar', 'silverspade', 'silvermedal', 'star', 'spade', 'medal', 'blackstar', 'blackspade', 'blackmedal'].forEach(function(x) { 
+			$("#" + x + "Cnt").empty();
+			$("#" + x + "Cnt").append(getBadgeCount(x));
+		});
 	}
 	
 	
@@ -155,12 +159,55 @@ $(document).ready(function(){
 					break;
 				}
 				changeMedalBadge(target, id, badge);
-			break;
+				break;
 		}
 	}
 	
 	$(".contextmenu > li").click(contextMenuClicked);
 	$(".contextmenu > .horizontal > li").click(contextMenuClicked);
+
+	$(document).contextmenu(function(e){
+		//Get window size:
+		var winWidth = $(document).width();
+		var winHeight = $(document).height();
+		//Get pointer position:
+		var posX = e.pageX;
+		var posY = e.pageY;
+		//Get contextmenu size:
+		var menuWidth = $(".contextmenu").width();
+		var menuHeight = $(".contextmenu").height();
+		//Security margin:
+		var secMargin = 10;
+		//Prevent page overflow:
+		if(posX + menuWidth + secMargin >= winWidth
+		&& posY + menuHeight + secMargin >= winHeight){
+		//Case 1: right-bottom overflow:
+			posLeft = posX - menuWidth - secMargin + "px";
+			posTop = posY - menuHeight - secMargin + "px";
+		}
+		else if(posX + menuWidth + secMargin >= winWidth){
+		//Case 2: right overflow:
+			posLeft = posX - menuWidth - secMargin + "px";
+			posTop = posY + secMargin + "px";
+		}
+		else if(posY + menuHeight + secMargin >= winHeight){
+		//Case 3: bottom overflow:
+			posLeft = posX + secMargin + "px";
+			posTop = posY - menuHeight - secMargin + "px";
+		}
+		else {
+		//Case 4: default values:
+			posLeft = posX + secMargin + "px";
+			posTop = posY + secMargin + "px";
+		};
+		//Display contextmenu:
+		$(".medalTable").css({
+		"left": posLeft,
+		"top": posTop
+		}).show();
+		//Prevent browser default contextmenu.
+		return false;
+ 	 });
 
 	$("#save").click(function() {
 		const captureDiv = document.getElementById('downloadImage');
@@ -210,5 +257,35 @@ $(document).ready(function(){
 	</ul>
 	<li id="none" data-badge="none.gif">없음</li>
 </ul>
+<table class="medalTable">
+	<tr>
+		<td><img src="img/medal/goldstar.png" style="width:30px; height:30px;"/></td>
+		<td id="goldstarCnt">0</td>
+	</tr>
+	<tr>
+		<td><img src="img/medal/silverstar.png" style="width:30px; height:30px;"/></td>
+		<td id="silverstarCnt">0</td>
+		<td><img src="img/medal/silverspade.png" style="width:30px; height:30px;"/></td>
+		<td id="silverspadeCnt">0</td>
+		<td><img src="img/medal/silvermedal.png" style="width:30px; height:30px;"/></td>
+		<td id="silvermedalCnt">0</td>
+	</tr>
+	<tr>
+		<td><img src="img/medal/star.png" style="width:30px; height:30px;"/></td>
+		<td id="starCnt">0</td>
+		<td><img src="img/medal/spade.png" style="width:30px; height:30px;"/></td>
+		<td id="spadeCnt">0</td>
+		<td><img src="img/medal/medal.png" style="width:30px; height:30px;"/></td>
+		<td id="medalCnt">0</td>
+	</tr>
+	<tr>
+		<td><img src="img/medal/blackstar.png" style="width:30px; height:30px;"/></td>
+		<td id="blackstarCnt">0</td>
+		<td><img src="img/medal/blackspade.png" style="width:30px; height:30px;"/></td>
+		<td id="blackspadeCnt">0</td>
+		<td><img src="img/medal/blackmedal.png" style="width:30px; height:30px;"/></td>
+		<td id="blackmedalCnt">0</td>
+	</tr>
+</table>
 </body>
 </html>
